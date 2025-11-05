@@ -16,10 +16,8 @@ function App() {
     "What programming languages do you specialise in?",
     "What is your experience with cloud computing?",
     "What experience do you have with Azure?",
-    "What did you study at university?",
-    ""
-
-  ]; // The text to type out
+    "What did you study at university?"
+    ]; // The text to type out
 
   useEffect(() => {
     let questionIndex = -1;
@@ -56,7 +54,7 @@ function App() {
     try{
       setWaitingForResponse(true);
       setChats([...chats, promptInput]);
-      response = await fetch("http://localhost:8000/api/chat/", 
+      response = await fetch("http://host.docker.internal:3000/api/chat/", 
       {
         headers: {
           'Accept': 'application/json',
@@ -151,6 +149,7 @@ function App() {
               value={promptInput}
               onChange={(e) => setPromptInput(e.target.value)}
               placeholder={promptPlaceHolder}
+              disabled={waitingForResponse}
             />
           </div>
         </form>
